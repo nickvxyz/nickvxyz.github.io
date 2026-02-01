@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BURNFAT App - Preparing to launch">
+    <meta name="theme-color" content="#ffffff">
+    <title>BURNFAT APP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border-radius: 0 !important;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --fg: #000000;
+            --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --bg: #000000;
+            --fg: #ffffff;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .header {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--fg);
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            color: var(--fg);
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 2px solid var(--fg);
+            color: var(--fg);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--fg);
+            color: var(--bg);
+        }
+
+        .theme-toggle__icon {
+            width: 12px;
+            height: 12px;
+            background-color: var(--fg);
+            transition: background-color 0.15s ease;
+        }
+
+        .theme-toggle:hover .theme-toggle__icon {
+            background-color: var(--bg);
+        }
+
+        [data-theme="dark"] .theme-toggle__icon {
+            background-color: transparent;
+            border: 2px solid var(--fg);
+        }
+
+        [data-theme="dark"] .theme-toggle:hover .theme-toggle__icon {
+            border-color: var(--bg);
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 24px;
+            text-align: center;
+        }
+
+        .message {
+            font-family: var(--font-mono);
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+            margin-bottom: 48px;
+        }
+
+        .subtext {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+            margin-bottom: 32px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 2px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--fg);
+            text-decoration: none;
+            padding: 0 32px;
+            border: 2px solid var(--fg);
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--fg);
+            color: var(--bg);
+        }
+
+        .footer {
+            padding: 16px;
+            border-top: 2px solid var(--fg);
+            text-align: center;
+        }
+
+        .back-link {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--fg);
+            text-decoration: none;
+            opacity: 0.5;
+            transition: opacity 0.15s ease;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 480px) {
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="https://burnfat.fun" class="logo">BURNFAT</a>
+        <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <span class="theme-toggle__icon" aria-hidden="true"></span>
+            <span class="theme-toggle__text">DARK</span>
+        </button>
+    </header>
+
+    <main class="main">
+        <h1 class="message">APP IS<br>PREPARING<br>TO LAUNCH</h1>
+        <p class="subtext">GET NOTIFIED WHEN WE LAUNCH</p>
+        <div class="buttons">
+            <a href="https://x.com/basefatburning" target="_blank" rel="noopener" class="btn">FOLLOW X</a>
+            <a href="https://t.me/basefatburning" target="_blank" rel="noopener" class="btn">JOIN TELEGRAM</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <a href="https://burnfat.fun" class="back-link">&larr; BACK TO MAIN</a>
+    </footer>
+
+    <script>
+        (function() {
+            const THEME_KEY = 'portfolio-theme';
+            const toggle = document.getElementById('themeToggle');
+            const toggleText = toggle.querySelector('.theme-toggle__text');
+
+            function getTheme() {
+                return localStorage.getItem(THEME_KEY) ||
+                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            }
+
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                toggleText.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
+                localStorage.setItem(THEME_KEY, theme);
+            }
+
+            setTheme(getTheme());
+
+            toggle.addEventListener('click', () => {
+                const current = document.documentElement.getAttribute('data-theme');
+                setTheme(current === 'dark' ? 'light' : 'dark');
+            });
+        })();
+    </script>
+</body>
+</html>
