@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BURNFAT App - Preparing to launch">
-    <meta name="theme-color" content="#ffffff">
-    <title>BURNFAT APP</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            border-radius: 0 !important;
-        }
+    <title>Fat Burn Ledger | NICKV</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
         :root {
             --bg: #ffffff;
             --fg: #000000;
             --font-mono: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-            --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            --font-sans: 'Inter', sans-serif;
+            --transition: 300ms ease;
         }
 
         [data-theme="dark"] {
@@ -29,32 +25,63 @@
             --fg: #ffffff;
         }
 
-        body {
-            font-family: var(--font-sans);
-            background-color: var(--bg);
-            color: var(--fg);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: background-color 0.3s ease, color 0.3s ease;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border-radius: 0 !important;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Header */
         .header {
-            padding: 16px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--fg);
+            background: var(--fg);
+            color: var(--bg);
+            border-bottom: 2px solid var(--bg);
+            transition: background-color var(--transition), color var(--transition);
         }
 
         .logo {
             font-family: var(--font-mono);
-            font-size: 0.85rem;
+            font-size: 14px;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 0.1em;
-            text-decoration: none;
-            color: var(--fg);
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            opacity: 0.5;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
         }
 
         .theme-toggle {
@@ -63,179 +90,629 @@
             gap: 8px;
             padding: 8px 16px;
             background: transparent;
-            border: 2px solid var(--fg);
-            color: var(--fg);
+            border: 2px solid var(--bg);
+            color: var(--bg);
             font-family: var(--font-mono);
-            font-size: 0.7rem;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             cursor: pointer;
-            transition: background-color 0.15s ease, color 0.15s ease;
+            transition: background-color 0.2s, color 0.2s;
         }
 
         .theme-toggle:hover {
-            background-color: var(--fg);
-            color: var(--bg);
+            background: var(--bg);
+            color: var(--fg);
         }
 
         .theme-toggle__icon {
-            width: 12px;
-            height: 12px;
-            background-color: var(--fg);
-            transition: background-color 0.15s ease;
+            width: 10px;
+            height: 10px;
+            background: var(--bg);
+            transition: background-color 0.2s;
         }
 
         .theme-toggle:hover .theme-toggle__icon {
-            background-color: var(--bg);
+            background: var(--fg);
         }
 
         [data-theme="dark"] .theme-toggle__icon {
-            background-color: transparent;
-            border: 2px solid var(--fg);
+            background: var(--bg);
         }
 
-        [data-theme="dark"] .theme-toggle:hover .theme-toggle__icon {
-            border-color: var(--bg);
+        /* Hero */
+        .hero {
+            margin-top: 60px;
+            padding: 80px 48px;
+            background: var(--bg);
+            color: var(--fg);
+            border-bottom: 2px solid var(--fg);
         }
 
-        .main {
-            flex: 1;
+        .hero__label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            margin-bottom: 24px;
+        }
+
+        .hero__title {
+            font-family: var(--font-mono);
+            font-size: clamp(36px, 8vw, 72px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero__subtitle {
+            font-family: var(--font-mono);
+            font-size: 18px;
+            line-height: 1.6;
+            opacity: 0.7;
+            max-width: 600px;
+        }
+
+        /* Counter Section */
+        .counter-section {
+            padding: 80px 48px;
+            background: var(--fg);
+            color: var(--bg);
+            border-bottom: 2px solid var(--bg);
+        }
+
+
+        .counter-section__left {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 48px 24px;
-            text-align: center;
         }
 
-        .message {
+        .counter-section__label {
             font-family: var(--font-mono);
-            font-size: clamp(2rem, 8vw, 5rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -0.04em;
-            line-height: 0.9;
-            margin-bottom: 48px;
-        }
-
-        .subtext {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.6;
+            letter-spacing: 0.2em;
+            opacity: 0.5;
+            margin-bottom: 8px;
+        }
+
+        .counter-section__hook {
+            font-family: var(--font-mono);
+            font-size: 15px;
+            opacity: 0.7;
             margin-bottom: 32px;
         }
 
-        .buttons {
+        .counter-section__right {
             display: flex;
-            gap: 2px;
+            flex-direction: column;
+            padding-top: 32px;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            height: 60px;
+        .counter-section__text {
             font-family: var(--font-mono);
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--fg);
-            text-decoration: none;
-            padding: 0 32px;
-            border: 2px solid var(--fg);
-            transition: background-color 0.15s ease, color 0.15s ease;
+            font-size: 15px;
+            line-height: 1.8;
+            opacity: 0.7;
         }
 
-        .btn:hover {
-            background-color: var(--fg);
+        .counter-section .cta {
+            background: var(--bg);
+            color: var(--fg);
+            border-color: var(--bg);
+        }
+
+        .counter-section .cta:hover {
+            background: transparent;
             color: var(--bg);
         }
 
-        .footer {
-            padding: 16px;
-            border-top: 2px solid var(--fg);
-            text-align: center;
+        .counter {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 48px;
         }
 
-        .back-link {
+        .counter__number {
             font-family: var(--font-mono);
-            font-size: 0.7rem;
+            font-size: clamp(48px, 10vw, 100px);
+            font-weight: 900;
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+
+        .counter__number.bump {
+            animation: counter-bump 0.3s ease;
+        }
+
+        @keyframes counter-bump {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .counter__unit {
+            font-family: var(--font-mono);
+            font-size: clamp(24px, 5vw, 48px);
+            font-weight: 700;
+            opacity: 0.5;
+        }
+
+        .counter__label {
+            font-family: var(--font-mono);
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--fg);
-            text-decoration: none;
-            opacity: 0.5;
-            transition: opacity 0.15s ease;
+            opacity: 0.7;
         }
 
-        .back-link:hover {
+        /* Banners */
+        .banners {
+            margin-top: 48px;
+        }
+
+        .banners__label {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .banners__container {
+            position: relative;
+            height: 72px;
+            width: 100%;
+        }
+
+        .banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 20px;
+            border: 4px solid #000000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .banner.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .banner.shake {
+            animation: shake 0.3s linear;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            50% { transform: translateX(8px); }
+            75% { transform: translateX(-4px); }
+        }
+
+        .banner--green { background: #2beb58; }
+        .banner--orange { background: #ed4908; }
+        .banner--yellow { background: #f7e709; }
+
+        .banner__icon {
+            width: 40px;
+            height: 40px;
+            background: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .banner__icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: #ffffff;
+        }
+
+        .banner__content {
+            flex: 1;
+            color: #000000;
+        }
+
+        .banner__name {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .banner__action {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .banner__link {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #000000;
+            padding: 8px 16px;
+            border: 2px solid #000000;
+            transition: all 0.2s;
+        }
+
+        .banner__link:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        /* Content Section */
+        .section {
+            padding: 80px 48px;
+            border-bottom: 2px solid;
+            transition: background-color var(--transition), color var(--transition);
+        }
+
+        .section--light {
+            background: var(--bg);
+            color: var(--fg);
+            border-color: var(--fg);
+        }
+
+        .section--dark {
+            background: var(--fg);
+            color: var(--bg);
+            border-color: var(--bg);
+        }
+
+        .section__content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .section__content > * {
+            min-width: 0;
+        }
+
+        @media (max-width: 900px) {
+            .section__content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        .section__text {
+            font-family: var(--font-mono);
+            font-size: 15px;
+            line-height: 1.8;
+            opacity: 0.7;
+        }
+
+        .section__text--large {
+            font-size: 24px;
+            line-height: 1.4;
             opacity: 1;
         }
 
-        @media (max-width: 480px) {
-            .buttons {
-                flex-direction: column;
+        /* CTA Button */
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            width: fit-content;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 18px 24px;
+            background: var(--fg);
+            color: var(--bg);
+            border: 2px solid var(--fg);
+            transition: all 0.2s;
+            margin-top: 32px;
+        }
+
+        .cta:hover {
+            background: transparent;
+            color: var(--fg);
+        }
+
+        .section--dark .cta {
+            background: var(--bg);
+            color: var(--fg);
+            border-color: var(--bg);
+        }
+
+        .section--dark .cta:hover {
+            background: transparent;
+            color: var(--bg);
+        }
+
+        .cta svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 32px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            background: var(--fg);
+            color: var(--bg);
+            border-top: 2px solid var(--bg);
+        }
+
+        .footer__copy {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .footer__link {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+
+        .footer__link:hover {
+            opacity: 1;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .header {
+                padding: 16px 24px;
             }
 
-            .btn {
-                width: 100%;
-                text-align: center;
+            .hero {
+                padding: 48px 24px;
+            }
+
+            .counter-section {
+                padding: 48px 24px;
+            }
+
+            .section {
+                padding: 48px 24px;
+            }
+
+            .footer {
+                padding: 24px;
+            }
+
+            .banner__link {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
+
+    <!-- Header -->
     <header class="header">
-        <a href="https://burnfat.fun" class="logo">BURNFAT</a>
-        <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
-            <span class="theme-toggle__icon" aria-hidden="true"></span>
-            <span class="theme-toggle__text">DARK</span>
-        </button>
+        <a href="https://nickv.xyz" class="logo">NICKV <span>/ APP</span></a>
+        <nav class="nav">
+            <button type="button" id="themeToggle" class="theme-toggle">
+                <span class="theme-toggle__icon"></span>
+                <span id="themeText">DARK</span>
+            </button>
+        </nav>
     </header>
 
-    <main class="main">
-        <h1 class="message">APP IS<br>PREPARING<br>TO LAUNCH</h1>
-        <p class="subtext">GET NOTIFIED WHEN WE LAUNCH</p>
-        <div class="buttons">
-            <a href="https://x.com/basefatburning" target="_blank" rel="noopener" class="btn">FOLLOW X</a>
-            <a href="https://t.me/basefatburning" target="_blank" rel="noopener" class="btn">JOIN TELEGRAM</a>
-        </div>
-    </main>
+    <!-- Hero -->
+    <section class="hero">
+        <p class="hero__label">Fat Burn Ledger</p>
+        <h1 class="hero__title">A Public Ledger<br>for Fat Burned</h1>
+        <p class="hero__subtitle">
+            Every kilogram burned is recorded permanently.<br>
+            Individual journeys stay private. The global total remains.
+        </p>
+    </section>
 
+    <!-- Counter Section -->
+    <section class="counter-section">
+        <div class="section__content">
+            <!-- Left Column: Counter + Banners -->
+            <div class="counter-section__left">
+                <p class="counter-section__label">Community Progress</p>
+                <p class="counter-section__hook">A shared total, growing over time</p>
+
+                <div class="counter">
+                    <div style="display: flex; align-items: baseline; gap: 12px;">
+                        <span class="counter__number" id="fatCounter">1,247</span>
+                        <span class="counter__unit">KG</span>
+                    </div>
+                    <span class="counter__label">fat burned together</span>
+                </div>
+
+                <div class="banners">
+                    <p class="banners__label">Live Activity</p>
+                    <div class="banners__container">
+                        <div class="banner banner--green" data-banner="0">
+                            <div class="banner__icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <line x1="19" y1="8" x2="19" y2="14"></line>
+                                    <line x1="22" y1="11" x2="16" y2="11"></line>
+                                </svg>
+                            </div>
+                            <div class="banner__content">
+                                <p class="banner__name">anon.base.eth</p>
+                                <p class="banner__action">joined the crew</p>
+                            </div>
+                        </div>
+                        <div class="banner banner--orange" data-banner="1">
+                            <div class="banner__icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <div class="banner__content">
+                                <p class="banner__name">nickv.base.eth</p>
+                                <p class="banner__action">burned 5 kg fat</p>
+                            </div>
+                        </div>
+                        <div class="banner banner--yellow" data-banner="2">
+                            <div class="banner__icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                            </div>
+                            <div class="banner__content">
+                                <p class="banner__name">chad.base.eth</p>
+                                <p class="banner__action">committed to burn 7 kg</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Explanation + CTA -->
+            <div class="counter-section__right">
+                <p class="counter-section__text">
+                    This number reflects the total amount of fat burned by participants so far. Only confirmed results are added. Nothing is reset.
+                </p>
+                <p class="counter-section__text" style="margin-top: 16px;">
+                    Launching shortly.
+                </p>
+                <a href="https://t.me/basefatburning/428" target="_blank" rel="noopener" class="cta">
+                    Get Notified
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="section section--light">
+        <div class="section__content">
+            <div>
+                <p class="section__text section__text--large">
+                    Launching soon
+                </p>
+                <p class="section__text" style="margin-top: 8px;">
+                    A public ledger for fat burned
+                </p>
+            </div>
+            <div>
+                
+                <p class="section__text" style="margin-top: 24px;">
+                    A public, permanent record of fat burned by humans over time.
+                </p>
+                <p class="section__text" style="margin-top: 24px;">
+                    Not a fitness app.<br>
+                    Not a weight loss programme.<br>
+                    Not a motivational platform.
+                </p>
+                <p class="section__text" style="margin-top: 24px;">
+                    The ledger exists to record outcomes, not intentions.
+                </p>
+                <p class="section__text" style="margin-top: 24px;">
+                    Every kilogram burned is added to a global counter and kept forever. Individual journeys stay private.
+                </p>
+                <p class="section__text" style="margin-top: 24px;">
+                    It does not coach, optimise, or judge.<br>
+                    It simply counts what actually happened.
+                </p>
+                <a href="https://t.me/basefatburning/428" target="_blank" rel="noopener" class="cta">
+                    Get Notified
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-        <a href="https://burnfat.fun" class="back-link">&larr; BACK TO MAIN</a>
+        <p class="footer__copy">&copy; 2026 NICKV</p>
+        <a href="https://nickv.xyz" class="footer__link">Back to nickv.xyz</a>
     </footer>
 
     <script>
-        (function() {
-            const THEME_KEY = 'portfolio-theme';
-            const toggle = document.getElementById('themeToggle');
-            const toggleText = toggle.querySelector('.theme-toggle__text');
+        // Theme Toggle
+        const toggle = document.getElementById('themeToggle');
+        const text = document.getElementById('themeText');
+        const html = document.documentElement;
 
-            function getTheme() {
-                return localStorage.getItem(THEME_KEY) ||
-                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            text.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
+        }
+
+        const saved = localStorage.getItem('theme') || 'light';
+        setTheme(saved);
+
+        toggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            setTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        // Banner Rotation with Counter Increment
+        const banners = document.querySelectorAll('.banner');
+        const counterEl = document.getElementById('fatCounter');
+        let currentBanner = 0;
+        let counterValue = 1247;
+
+        function formatNumber(num) {
+            return num.toLocaleString('en-US');
+        }
+
+        function rotateBanners() {
+            banners.forEach(b => b.classList.remove('active', 'shake'));
+            const banner = banners[currentBanner];
+            banner.classList.add('active', 'shake');
+
+            // Check if this is the "burned 5 kg fat" banner (index 1)
+            if (currentBanner === 1) {
+                counterValue += 5;
+                counterEl.textContent = formatNumber(counterValue);
+                counterEl.classList.add('bump');
+                setTimeout(() => counterEl.classList.remove('bump'), 300);
             }
 
-            function setTheme(theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-                toggleText.textContent = theme === 'dark' ? 'LIGHT' : 'DARK';
-                localStorage.setItem(THEME_KEY, theme);
-            }
+            currentBanner = (currentBanner + 1) % banners.length;
+        }
 
-            setTheme(getTheme());
-
-            toggle.addEventListener('click', () => {
-                const current = document.documentElement.getAttribute('data-theme');
-                setTheme(current === 'dark' ? 'light' : 'dark');
-            });
-        })();
+        if (banners.length > 0) {
+            rotateBanners(); // Show first banner immediately
+            setInterval(rotateBanners, 4000);
+        }
     </script>
+
 </body>
 </html>
